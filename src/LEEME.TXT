@@ -1,0 +1,63 @@
+PyFC:Solitari
+
+Proyecto Final de Carrera: consiste en crear un juego solitario con baraja española.
+
+No se permite la redistribución del programa sin autorización del autor.
+
+Ejecución (windows):
+- Descompresión del archivo PyFCSolitari-(WIN-XXXXXX).zip
+- Ejecución del archivo ejecutable Solitari.exe dentro de la carpeta Solitari
+Ejecución (Mac os X):
+- Descompresión del archivo PyFCSolitari-(MAC-XXXXXX).zip
+- Ejecución de la aplicación PyFCSolitari.app
+
+
+Manual:
+- En acordeon: se puede mover qualquier carta siempre y cuando el destino sea una carta superior del mismo palo, si no es la ultima, las siguientes se arrastraran con ella. Solo los 12 se pueden mover a una columna vacia, en caso de no tener ningun 12 se puede mover qualquiera, las pilas deben empezarse por el 1 y siempre poner el mismo palo, no se puede mover de pila a columna.
+- En sismunts: se puede mover qualquier carta siempre y cuando el destino sea una carta superior o una pila vacia y esta carta sea la ultima de la columna. Se puede meter i extraer cartas en las 4 pilas. En las cartas sobrantes solo se pueden ver una sola vez.
+
+Para una manera mas fácil de depurar la aplicación, se pide que se me envíe un e-mail con la siguiente información:
+* En caso de ser un comportamiento incorrecto: una captura de pantalla del comportamiento con una breve descripción de que se estaba haciendo.
+* En caso de cuelgue o salida repentina: el archivo solitari.exe.log, una descripción del que se estaba haciendo en ese momento, (borrad el archivo solitari.exe.log una vez enviado).
+
+Muchas gracias por el servicio ofrecido.
+
+TODO:
+	- Optimización
+	- Manual de juego, con las normas del juego.
+	- Créditos
+
+
+Changelog:
+(Build: 20090309)
+- (creado) se permiten movimientos avanzados (supongo que no todos) en 6 munts
+- (solucionado) bastantes bugs que ya no recuerdo
+(Build: 20090215)
+- (solucionado) Bug al guardar una partida
+- (modificado) ahora se tiene en cuenta la posicion del medio de la carta (justo arriba) al arrastrar para poner una carta en su sitio
+(Build: 20090208)
+- (nuevo) Sistema para ver los possibles movimientos
+- (solucionado) error en dobleclick en cartas aun ocultas
+- (solucionado) Problemas con los acentos
+- (nuevo) Nuevas configuraciones posibles en config.cfg
+(Build: 20090111)
+- (nuevo) usa un sistema de configuración, no tiene menu de configuracion, però se pueden configurar parametros de la configuracion en el archivo config.cfg
+- (nuevo) ahora se pueden modificar los textos que salen en el juego, deven ser archivos .lng de texto
+- (nuevo) Se puede guardar i cargar una partida, no se puede modificar el nombre de la partida.
+- (solucionado) error en sismunts
+- (solucionado) problemas con los acentos, aun quedan caracteres raros para solucionar.
+- (solucionado) zona donde se hace click a una pila
+(Build: 20081217)
+- (solucionado) la barra de menus deja pasar la posición del mouse, con lo que se apartan cartas cuando no hay propiamente el mouse encima
+- (nuevo) deshacer movimientos
+- (*****) reañadidos los 8 i 9 en 6munts 
+- (modificado) ahora las cartas se arrastran a partir de donde clicamos con el mouse {Para verificar si gusta o no}
+(build: 20081206)
+- (nuevo) contador de movimientos
+- (nuevo) ventana de final de partida
+- (solucionado) error al mover de pila a columna
+(Build : 20081201)
+- (solucionado) Problema al passar de los montecitos finales a las columnas
+- (solucionado) Error de tratamiento de reglas en sismunts
+(Build : 20081130)
+- (solucionado) Cartas con el grafico invertido

@@ -1,0 +1,47 @@
+# Idioma: catala
+# Autor: Jaume Singla Valls
+
+'Generic':
+  'yes': 'Sí'
+  'no': 'No'
+  'cancel': 'Cancel·lar'
+  'accept': "D'acord"
+
+'principal':
+  'title': 'Menú principal'
+  'load': 'Carregar'
+  'exit': 'Sortiu del joc'
+  '6munts': 'Sis munts'
+  'acordio': 'Acordió'
+
+'update':
+  'title': 'Nova versió disponible'
+  'text': 'La versió <~new~> ja esta disponible, pero estas usant la <~old~>'
+
+'exit':
+  'title': 'Sortir?'
+  'text': 'Esteu segurs de voler sortir?'
+
+'cancel':
+  'title': 'Cancel·lar?'
+  'text': 'Esteu segurs de voler cancelar la partida que estàveu jugant?'
+
+
+'game':
+  'menu': 'Menu principal'
+  'undo': 'Desfer moviment'
+  'save': 'Guardar Partida'
+  'viewmovements': 'veure moviments'
+  'hiddenmovements': 'oculta moviments'
+  'movements': 'moviments'
+
+'win':
+  'title': 'Felicitats'
+  'text': 'Has guanyat en <~moviments~> moviments!'
+  'button': 'Victòria'
+
+'load&save':
+  'save': 'Guardar partida'
+  'empty': '<No guardat>'
+  'load': 'Carregar partida'
+

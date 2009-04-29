@@ -1,0 +1,17 @@
+FET:
+-hi falten els 8 i 9 (i evidentment, els 7 no poden anar damunt dels 10)
+-hi falten les instruccions del joc --> En el leeme
+-hi falta l'opció UNDO (fins ultima carta destapada) 
+-hi falta una opció que t'informi dels possibles moviments que pots fer
+-estaria bé que amb un doble click s'enviés la carta al munt dret
+- Fitxer configuració
+- Guardar i carregar partida
+-per fer més àgil el joc, estaria bé que, en cas d'haver-hi un munt buit, s'acceptés transferir dues cartes (és posar la de baix al buit, la següent al destí i la que era baix altra vegada a sota)
+
+
+TO DO:
+Joc dels 6 munts:
+-( disseny ) crec que estaria millor tenit els quatre munts destí en vertical a la part dreta, separats doncs de la resta del joc 
+-{ desestimat }estaria millor que quan la carta ha abandonat completament el munt, si es deixa, en comptes de tornar anés a parar al munt dret (si és possible) o al lloc on pot anar (si només n'hi ha un) 
+
+Propostes:
