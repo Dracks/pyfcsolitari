@@ -7,10 +7,13 @@
 #
 import  pygame
 from pygame.locals import *
-CARTA_ALTURA=154;
-CARTA_AMPLADA=100; 
+import yaml
+#CARTA_ALTURA=154;
+#CARTA_AMPLADA=100; 
 class Recursos:
-    def __init__(self):
+    def __init__(self, theme):
+        self.folder="Data/"+theme;
+        self.config=yaml.load(file(self.folder+"/index.ythm",'rb').read())
         self.fonts=(False,False,False,False)
         self.imgBoto=False
         self.fonsMenu=False
@@ -33,9 +36,9 @@ class Recursos:
             if size==0:
                 None
             elif size==1:
-                self.fonts=(self.fonts[0],pygame.font.Font("Data/font3.ttf",15),self.fonts[2], self.fonts[3])
+                self.fonts=(self.fonts[0],pygame.font.Font(self.folder+"/"+self.config["fonts"]["middle"]["file"],self.config["fonts"]["middle"]["size"]),self.fonts[2], self.fonts[3])
             elif size==2:
-                self.fonts=(self.fonts[0],self.fonts[1],pygame.font.Font("Data/font3.ttf",28), self.fonts[3])
+                self.fonts=(self.fonts[0],self.fonts[1],pygame.font.Font(self.folder+"/"+self.config["fonts"]["large"]["file"],self.config["fonts"]["large"]["size"]), self.fonts[3])
             else:
                 None
                 
@@ -43,7 +46,7 @@ class Recursos:
             
     def getimgBoto(self):
         if self.imgBoto==False:
-            self.imgBoto=pygame.image.load("Data/boto.png").convert_alpha()
+            self.imgBoto=pygame.image.load(self.folder+"/"+self.config["button"]).convert_alpha()
                 
         return self.imgBoto
             
@@ -99,14 +102,14 @@ class Recursos:
     
     def getCartaOculta(self):
         if self.oculta==False:
-            self.oculta=pygame.image.load("Data/oculta.png").convert_alpha()
+            self.oculta=pygame.image.load(self.folder+"/"+self.config["cartas"]["hidden"]).convert_alpha()
         return self.oculta;
     
     def generaPal(self, image):
         ret=list()
         for j in range(0,12):
-            carta=pygame.Surface((CARTA_AMPLADA,CARTA_ALTURA), HWSURFACE|SRCALPHA)
-            carta.blit(image,(0,0),pygame.Rect( j*CARTA_AMPLADA, 0, CARTA_AMPLADA, CARTA_ALTURA ))
+            carta=pygame.Surface((self.config["carta"]["width"],self.config["carta"]["height"]), HWSURFACE|SRCALPHA)
+            carta.blit(image,(0,0),pygame.Rect( j*self.config["carta"]["width"], 0, self.config["carta"]["width"], self.config["carta"]["height"] ))
             # carta.convert_alpha()
             ret.append(carta)
         return ret
@@ -114,43 +117,21 @@ class Recursos:
             
     def getCarta(self,pal,num):
         if self.cartes==False:
-            oros=pygame.image.load("Data/oros.png")
-            copes=pygame.image.load("Data/copes.png")
-            espases=pygame.image.load("Data/espases.png")
-            bastos=pygame.image.load("Data/bastos.png")
+            oros=pygame.image.load(self.folder+"/"+self.config["cartas"]["oros"])
+            copes=pygame.image.load(self.folder+"/"+self.config["cartas"]["copas"])
+            espases=pygame.image.load(self.folder+"/"+self.config["cartas"]["espadas"])
+            bastos=pygame.image.load(self.folder+"/"+self.config["cartas"]["bastos"])
             self.cartes=(self.generaPal(oros),self.generaPal(copes),self.generaPal(espases),self.generaPal(bastos))
-            
-            
-         #   self.getCartaNull()
-         #   self.getfont(1)
-         #   self.cartes=list()
-         #   for i in range(1,5):
-         #       cartetes=list()
-         #       for j in range(1,13):
-                   # print "%d : %d" % (i,j)
-         #           imatge=self.cartanull.copy()
-         #           imatge.blit(self.fonts[1].render("P=%d - n=%d" % (i,j), True, (0,0,0)),(15,15))
-         #           cartetes.append(imatge)
-         #       self.cartes.append(cartetes)
-#        print "%d - %d" % (pal, num)
-#        print "%d :-: %d" % (len(self.cartes), len(self.cartes[pal-1]))
         return self.cartes[pal-1][num-1]
-        #return pygame.Surface((CARTA_AMPLADA+6,CARTA_ALTURA+6),HWSURFACE|SRCALPHA)
         
     def getCartaNull(self):
         if self.cartanull==False:
-            self.cartanull=pygame.image.load("Data/nula.png").convert_alpha()
-           # self.cartanull=pygame.image.load("Data/base.png").convert_alpha()#pygame.Surface((120,170))
-           # self.cartanull.fill(0xFFFFFF)
+            self.cartanull=pygame.image.load(self.folder+"/"+self.config["cartas"]["null"]).convert_alpha()
         return self.cartanull
     
     def getImatgeMarca(self):
         if self.imatgeMarca==False:
-            """caracteristiques=pygame.Rect()
-            caracteristiques.center=(3,3)
-            self.imatgeMarca=pygame.Surface(caracteristiques,HWSURFACE|SRCALPHA)"""
-            #self.imatgeMarca=pygame.Surface((CARTA_AMPLADA+6,CARTA_ALTURA+6),HWSURFACE|SRCALPHA)
-            self.imatgeMarca=pygame.Surface((CARTA_AMPLADA+6,CARTA_ALTURA+6))
+            self.imatgeMarca=pygame.Surface((self.config["carta"]["width"]+6,self.config["carta"]["height"]+6))
             self.imatgeMarca.fill(0xAA0000)
             self.imatgeMarca.get_rect().center=(3,3)
         return self.imatgeMarca

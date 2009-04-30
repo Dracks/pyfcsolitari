@@ -16,7 +16,7 @@ VERSIO='0.9.5'
 
 class joc:
     def __init__(self, opcions):
-        self.recursos=Recursos()
+        self.recursos=Recursos(opcions.theme)
         self.opcions=opcions
         self.interficie=Finestra(self.opcions.resolucio, tempsDobleClick=self.opcions.tempsDobleClick)
         self.interficie.setTitle("PyFC: Solitari")
@@ -29,8 +29,8 @@ class joc:
         self.mostrarMovimentsPossibles=False
         #### Carraguem l'ultima versió
         try:
-            #lastVersion=urllib.urlopen('http://dracks.freehostia.com/PyFC-Version').read()
-            lastVersion=urllib.urlopen('http://localhost/~dracks/PyFC-Version').read()
+            lastVersion=urllib.urlopen('http://dracks.freehostia.com/PyFC-Version').read()
+            #lastVersion=urllib.urlopen('http://localhost/~dracks/PyFC-Version').read()
             if len(lastVersion)>10:
                 lastVersion=VERSIO
         except:

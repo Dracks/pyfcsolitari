@@ -16,6 +16,7 @@ class Opcions:
         self.fps=config.getboolean('general','fps')
         self.maxDesplacamentPiles=(config.getint('game','MaxDespPilesx'),config.getint('game','MaxDespPilesy'))
         self.maxDesplacamentExtres=(config.getint('game','MaxDespExtresx'),config.getint('game','MaxDespExtresy'))
+        self.theme=config.get('general','theme')
 
     def getText(self,menu, text):
         return self.texts[menu][text]
