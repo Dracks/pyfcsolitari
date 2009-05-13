@@ -1,0 +1,20 @@
+"fonts":
+  "middle":
+    "file": font3.ttf
+    "size": 15
+  "large":
+    "file": font3.ttf
+    "size": 28
+"button": boto.png
+"cartas": 
+  "hidden": oculta.png
+  "oros": oros_vector.png
+  "copas": copes_vector.png
+  "espadas": espases_vector.png
+  "bastos": bastos_vector.png
+  "null":  nula.png
+"carta":
+  "numbers":
+    "incrustat": False
+  "width": 100
+  "height": 154
