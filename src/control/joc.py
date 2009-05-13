@@ -12,7 +12,7 @@ from control import Acordeo
 from control import Sismunts
 from model import Moviment
 
-VERSIO='0.9.5'
+VERSIO='1.0'
 
 class joc:
     def __init__(self, opcions):
