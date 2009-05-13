@@ -107,9 +107,14 @@ class Recursos:
     
     def generaPal(self, image):
         ret=list()
+        incrusta=self.config["carta"]["numbers"]["incrustat"]
+        if incrusta:
+            posicio_numero=(self.config["carta"]["numbers"]["x"],self.config["carta"]["numbers"]["y"])
         for j in range(0,12):
             carta=pygame.Surface((self.config["carta"]["width"],self.config["carta"]["height"]), HWSURFACE|SRCALPHA)
             carta.blit(image,(0,0),pygame.Rect( j*self.config["carta"]["width"], 0, self.config["carta"]["width"], self.config["carta"]["height"] ))
+            if incrusta:
+                carta.blit(self.fonts[1].render("%d" % (j+1),True,(0,0,0),posicio_numero))
             # carta.convert_alpha()
             ret.append(carta)
         return ret
