@@ -78,6 +78,9 @@ class Finestra:
         
     def setTitle(self, name):
         pygame.display.set_caption(name)
+        
+    def setIcon (self, name):
+        pygame.display.set_icon(pygame.image.load(name))
     
     def setShortCut(self, func):
         self.shortcurt=func

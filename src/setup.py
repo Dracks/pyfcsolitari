@@ -30,7 +30,7 @@ def get_data_files():
 
     # carreguem la lletra i el icona del pygame per defecte
     pygamedir = os.path.split(pygame.base.__file__)[0]
-    pygamefiles = [os.path.join(pygamedir, pygame.font.get_default_font()), os.path.join(pygamedir, 'pygame_icon.bmp')]
+    #pygamefiles = [os.path.join(pygamedir, pygame.font.get_default_font()), os.path.join(pygamedir, 'pygame_icon.bmp')]
     datafiles = [('./pygame', pygamefiles)]
     datafiles=[]
 
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     elif sys.argv[1] == 'py2app':
         # Making Mac OSX executable and disk image
         from setuptools import setup
-        OPTIONS= { "argv_emulation": True} #, "iconfile": os.path.join(os.path.dirname(os.path.abspath (sys.argv[0])), "data","Childsplay.icns")}
+        OPTIONS= { "argv_emulation": True , "iconfile": os.path.join(os.path.dirname(os.path.abspath (sys.argv[0])), "Data","icona_osX.icns")}
 
         # Extra keywords related to py2app
         extra_data = {

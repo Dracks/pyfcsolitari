@@ -20,6 +20,7 @@ class joc:
         self.opcions=opcions
         self.interficie=Finestra(self.opcions.resolucio, tempsDobleClick=self.opcions.tempsDobleClick)
         self.interficie.setTitle("PyFC: Solitari")
+        self.interficie.setIcon("Data/icona_transparent.png")
         imatge1=self.recursos.getimgBoto()
         font=self.recursos.getfont(1)
         font2=self.recursos.getfont(2)
