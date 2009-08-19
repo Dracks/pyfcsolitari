@@ -11,9 +11,4 @@ from model import Opcions
 #from finestra import *
 
 if __name__ == "__main__":
-#    a=Jocproves3()#.arrencaJoc()
-#    a.executa()
-#    a.arrencaJoc()
-#    Centre().arrenca()
-    
     joc(Opcions('config.cfg')).executa()

@@ -14,6 +14,7 @@ class Partida:
         self.NumMoviments=0
         self.taulell=taulell
         self.cartes=list()
+        self.interficie='MostrarCartes'
         
     def reparteixCartes(self):
         baralla=list()
@@ -140,5 +141,9 @@ class Partida:
             if self.comprovaMovimentMuntAColumna(munt, i, munt-1):
                 moviments.append((0,i,len(self.taulell.llistaCartesColumna(i))-1))
         return moviments
+        
+        
+    def getInterficie(self):
+        return self.interficie;
 
         
