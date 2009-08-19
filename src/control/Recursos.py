@@ -17,6 +17,7 @@ class Recursos:
         self.fonts=(False,False,False,False)
         self.imgBoto=False
         self.fonsMenu=False
+        self.menuIdioma=False
         self.menuPrincipal=False
         self.menuSortir=False
         self.menuOpcions=False
@@ -61,6 +62,12 @@ class Recursos:
             self.menuPrincipal=pygame.Surface((300,400))
             self.menuPrincipal.fill(0x444400)
         return self.menuPrincipal
+        
+    def getmenuIdioma(self):
+        if self.menuIdioma==False:
+            self.menuIdioma=pygame.Surface((300,400))
+            self.menuIdioma.fill(0x444400)
+        return self.menuIdioma
         
     def getmenuSortir(self):
         if self.menuSortir==False:
