@@ -41,6 +41,12 @@ class Empty:
     def onMouseDoubleClick(self, button):
         pass
 
+    def checkMouseOver(self, x, y):
+        p=self.getPosition()
+        s=self.getSize();
+        return x>p[0] and y>p[1] and x<p[0]+s[0] and y<p[1]+s[1];
+
+
     def zFar(self):
         return self.pz-1;
 

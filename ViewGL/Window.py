@@ -4,6 +4,7 @@ __author__ = 'dracks'
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
+from time import time;
 
 class Window:
     def __init__(self, width, height, name):
@@ -13,6 +14,8 @@ class Window:
         self.width=width;
         self.height=height;
         self.delegate=None;
+        self.count=0;
+        self.lastStep=time();
 
         glutInit(sys.argv)
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH)
@@ -30,6 +33,9 @@ class Window:
 
         glutDisplayFunc(self.draw)
 
+        glutIdleFunc (self.idleFunction);
+
+        glutPassiveMotionFunc(self.mouseMove);
         #glutCheckLoop()
 
 
@@ -43,9 +49,14 @@ class Window:
     def keyboard(self, *event):
         glutPostRedisplay();
 
+    def mouseMove(self, x, y):
+        for i in self.listObjects:
+            i.onMouseMove(x,y);
+        glutPostRedisplay()
+
     def mouse(self, button, state, x, y):
-        #for i in self.listObjects:
-        #    i.mouse(button, state, x, y);
+        for i in self.listObjects:
+            i.onMouseClick(button);
         glutPostRedisplay()
 
     def reshape(self, width, height):
@@ -53,20 +64,20 @@ class Window:
         self.height=height;
         glutPostRedisplay()
 
+    def idleFunction(self):
+        tmpTime=time();
+        self.count+=1
+        if (tmpTime-self.lastStep>1.0):
+            print self.count
+            self.lastStep=tmpTime;
+            self.count=0;
+
     def run(self):
         glutMainLoop()
         return
 
     def draw(self):
         glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-
-
-        #glMatrixMode(GL_PROJECTION);
-        #glLoadIdentity();
-        #glOrtho (0.0, self.width, self.height, 0.0, -10.0, 10.0);
-        #glMatrixMode(GL_MODELVIEW);
-        #glLoadIdentity()
-
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -87,39 +98,7 @@ class Window:
 
         glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
         glAlphaFunc(GL_GREATER, 0.1);
-        #glDepthFunc(GL_LESS);
-        """glDepthMask(GL_TRUE);
-        glEnable(GL_CULL_FACE);
 
-        glEnable(GL_ALPHA_TEST);
-        glDepthMask(GL_TRUE);
-        glDepthFunc(GL_LESS);
-
-        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-        glAlphaFunc(GL_GREATER, 0.1);
-        #"""
-
-
-
-        """glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glViewport(0, 0, self.width, self.height)
-        glOrtho(0, self.width, self.height, 0.0, 0.1, 100);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        #glEnable(GL_BLEND)
-        #glEnable(GL_DEPTH_TEST)
-        #glClearDepth(GL_LEQUAL)
-        #glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        #"""
-
-
-        """#loadImage();
-        glEnable(GL_TEXTURE_2D);
-        glEnable(GL_DEPTH_TEST);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        glMatrixMode(GL_MODELVIEW);
-        #"""
 
         glTranslatef(self.worldx, self.worldy, 0.0);
         for i in self.listObjects:

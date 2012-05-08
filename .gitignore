@@ -1,1 +1,4 @@
 *.pyc
+/.idea
+/WidgetsOld
+/Data

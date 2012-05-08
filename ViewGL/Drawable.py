@@ -48,7 +48,7 @@ class Drawable(AbstractDrawable):
 
 class DrawableImage(AbstractDrawable):
     def draw(self, px, py, pz):
-        print "Debug DrawableImage", px, py, pz
+        #print "Debug DrawableImage", px, py, pz
         glPushMatrix();
         glEnable(GL_TEXTURE_2D)
         glBindTexture(GL_TEXTURE_2D, self.image)
@@ -74,7 +74,7 @@ class DrawableImage(AbstractDrawable):
         glEnd()
         #glPopMatrix();
 
-        glBegin(GL_QUADS)
+        """glBegin(GL_QUADS)
 
         glTexCoord2f(0, 0);
         glVertex2f(0, 0)    # Bottom Left Of The Texture and Quad
@@ -88,6 +88,6 @@ class DrawableImage(AbstractDrawable):
         glTexCoord2f(0, 1);
         glVertex2f(0, self.size[1])    # Bottom Right Of The Texture and Quad
         #glVertex3f(self.size[0], 0, pz)    # Bottom Right Of The Texture and Quad
-        glEnd()
+        glEnd()"""
         glPopMatrix();
 

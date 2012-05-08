@@ -18,6 +18,31 @@ class Layout(Empty):
         self.contentList.append(elem)
         self.update();
 
+    def onMouseMove(self, x, y):
+        newOver=False;
+        if (self.overElement!=False):
+            self.overElement.onMouseMove(x,y)
+            if self.overElement.checkMouseOver(x,y):
+                newOver=self.overElement;
+
+            elif self.checkMouseOver(x, y):
+                for i in self.nearElements:
+                    if i>-1 and i<len(self.contentList):
+                        if (self.contentList[i].checkMouseOver(x,y)):
+                            self.nearElements=(i-1,i+1);
+                            newOver=self.contentList[i];
+
+        else:
+            if self.checkMouseOver(x,y):
+                for i,e in enumerate(self.contentList):
+                    if (e.checkMouseOver(x,y)):
+                        self.nearElements=(i-1, i+1);
+                        newOver=e;
+                        break;
+
+        self.overElement=newOver
+        #print newOver;
+
     def onMouseClick(self, button):
         if self.overElement:
             self.overElement.onMouseClick(button)
@@ -54,8 +79,6 @@ class VerticalLayout(Layout):
     """def getTamMin(self):
         self.getTamMin(1)"""
 
-    def onMouseMove(self, x, y):
-        pass;
     """def click(self,coordenades):
         for i in self.content:
             tam=i.getTamany()

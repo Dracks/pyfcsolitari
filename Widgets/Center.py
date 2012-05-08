@@ -22,13 +22,9 @@ class Center(Empty):
         return self.size
 
     def onMouseMove(self, x, y):
-        relx=x-self.px
-        rely=y-self.py
-        if relx>(self.surface[0]-self.contentsSize[0])/2 and relx<(self.surface[0]+self.contentsSize[0])/2 and rely>(self.surface[1]-self.contentsSize[1])/2 and rely<(self.surface[1]+self.contentsSize[1])/2:
-            self.mouseOverBool=True
-            self.contents.onMouseMove(x, y)
-        else:
-            self.mouseOverBool=False
+        self.contents.onMouseMove(x, y)
+        self.mouseOverBool=self.contents.checkMouseOver(x,y)
+
 
     def onMouseClick(self, button):
         if self.mouseOverBool:
