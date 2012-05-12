@@ -8,6 +8,7 @@ class Center(Empty):
         self.surface=surface
         self.mouseOverBool=False;
         self.contentsSize=(0,0)
+        self.contents=Empty();
 
     def setElement(self, elem):
         elem.setParentElement(elem)

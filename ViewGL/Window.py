@@ -16,6 +16,11 @@ class Window:
         self.delegate=None;
         self.count=0;
         self.lastStep=time();
+        self.lastPosition=False;
+
+        self.firstLayer=False
+        self.FPSFunction=None
+        self.FPSImage=None
 
         glutInit(sys.argv)
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH)
@@ -36,27 +41,44 @@ class Window:
         glutIdleFunc (self.idleFunction);
 
         glutPassiveMotionFunc(self.mouseMove);
+
         #glutCheckLoop()
 
+    def pushView(self, view):
+        self.listObjects.append(view)
+        self.firstLayer=view
 
+    def popView(self):
+        self.listObjects.pop();
+        if len(self.listObjects):
+            self.firstLayer=self.listObjects[-1]
+        else:
+            self.firstLayer=False;
 
-    def addObject(self, obj):
-        self.listObjects.append(obj)
+    #def addObject(self, obj):
+    #    self.listObjects.append(obj)
 
     def setDelegate(self, delegate):
         self.delegate=delegate;
+
+    def setFPSFunction(self, fun):
+        self.FPSFunction=fun;
 
     def keyboard(self, *event):
         glutPostRedisplay();
 
     def mouseMove(self, x, y):
-        for i in self.listObjects:
-            i.onMouseMove(x,y);
+        #for i in self.listObjects:
+        #    i.onMouseMove(x,y);
+        self.firstLayer.onMouseMove(x,y);
+        self.lastPosition=(x,y);
         glutPostRedisplay()
 
     def mouse(self, button, state, x, y):
-        for i in self.listObjects:
-            i.onMouseClick(button);
+        #for i in self.listObjects:
+        #    i.onMouseClick(button);
+        if self.firstLayer!=False:
+            self.firstLayer.onMouseClick(button);
         glutPostRedisplay()
 
     def reshape(self, width, height):
@@ -68,9 +90,14 @@ class Window:
         tmpTime=time();
         self.count+=1
         if (tmpTime-self.lastStep>1.0):
-            print self.count
+            #print self.count
+            if self.FPSFunction!=None:
+                self.FPSImage=self.FPSFunction(self.count)
+            else:
+                self.FPSImage=None;
             self.lastStep=tmpTime;
             self.count=0;
+        glutPostRedisplay();
 
     def run(self):
         glutMainLoop()
@@ -101,6 +128,10 @@ class Window:
 
 
         glTranslatef(self.worldx, self.worldy, 0.0);
+        if self.FPSImage!=None:
+            self.FPSImage.draw(0,0,80);
+        glScale(1.0, 1.0, len(self.listObjects)*0.001)
         for i in self.listObjects:
+            glTranslatef(0.0, 0.0, 100);
             i.draw();
         glutSwapBuffers();

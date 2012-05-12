@@ -46,12 +46,11 @@ class Empty:
         s=self.getSize();
         return x>p[0] and y>p[1] and x<p[0]+s[0] and y<p[1]+s[1];
 
+    def zFar(self, value=1):
+        return self.pz-value;
 
-    def zFar(self):
-        return self.pz-1;
-
-    def zNear(self):
-        return self.pz+1;
+    def zNear(self, value=1):
+        return self.pz+value;
 
     def draw(self):
         pass

@@ -1,11 +1,6 @@
-__author__ = 'dracks'
 
-import Drawable
-"""
-class Font:
-    pass
+#from ViewGL import Image as Im;
+#import Image, ImageFont,ImageDraw
 
-class Text(Drawable):
-    def __init__(self, font, size, color):
-        pass
-"""
+
+

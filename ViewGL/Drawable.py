@@ -28,10 +28,13 @@ class Drawable(AbstractDrawable):
 
     def draw(self, px, py, pz):
         glPushMatrix();
-        glTranslatef(self.position[0], self.position[1], self.z);
+
+        #print "Pintant a la z", pz;
         #glScalef(0.01,0.01,0.01);
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+        glDisable(GL_TEXTURE_2D)
+        glTranslatef(px, py, pz);
 
         glBegin(GL_QUADS)
         glColor4fv(self.color);
@@ -55,10 +58,12 @@ class DrawableImage(AbstractDrawable):
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
+        #print "Pintant a la z", pz;
+
         glTranslatef(px, py, pz);
 
         glBegin(GL_QUADS)
-
+        glColor4f(1,1,1,1);
         glTexCoord2f(0, 0);
         glVertex2f(0, 0)    # Bottom Left Of The Texture and Quad
         #glVertex3f(0, 0, pz)    # Bottom Left Of The Texture and Quad
@@ -74,20 +79,5 @@ class DrawableImage(AbstractDrawable):
         glEnd()
         #glPopMatrix();
 
-        """glBegin(GL_QUADS)
-
-        glTexCoord2f(0, 0);
-        glVertex2f(0, 0)    # Bottom Left Of The Texture and Quad
-        #glVertex3f(0, 0, pz)    # Bottom Left Of The Texture and Quad
-        glTexCoord2f(1, 0);
-        glVertex2f(self.size[0], 0)    # Top Left Of The Texture and Quad
-        #glVertex3f(0, self.size[1],pz)    # Top Left Of The Texture and Quad
-        glTexCoord2f(1, 1);
-        glVertex2f( self.size[0],  self.size[1])    # Top Right Of The Texture and Quad
-        #glVertex3f( self.size[0],  self.size[1], 0)    # Top Right Of The Texture and Quad
-        glTexCoord2f(0, 1);
-        glVertex2f(0, self.size[1])    # Bottom Right Of The Texture and Quad
-        #glVertex3f(self.size[0], 0, pz)    # Bottom Right Of The Texture and Quad
-        glEnd()"""
         glPopMatrix();
 
