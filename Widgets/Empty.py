@@ -42,9 +42,12 @@ class Empty:
         pass
 
     def checkMouseOver(self, x, y):
-        p=self.getPosition()
+        #p=self.getPosition()
         s=self.getSize();
-        return x>p[0] and y>p[1] and x<p[0]+s[0] and y<p[1]+s[1];
+        sx=x-self.px
+        sy=y-self.py
+        #print "CheckMouseOver Empty", self.getPosition(), self.getSize(), x, y
+        return sx>0 and sy>0 and sx<s[0] and sy<s[1];
 
     def zFar(self, value=1):
         return self.pz-value;

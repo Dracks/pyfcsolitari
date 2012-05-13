@@ -14,9 +14,12 @@ class Layout(Empty):
         self.overElement=False
         self.nearElements=(-1,-1)
 
-    def addElem(self,elem):
+    def addElement(self,elem):
         self.contentList.append(elem)
         self._update();
+
+    def getChilds(self):
+        return self.contentList
 
     def onMouseMove(self, x, y):
         newOver=False;
@@ -45,6 +48,7 @@ class Layout(Empty):
 
     def onMouseClick(self, button):
         if self.overElement:
+            print "MouseClick - Layout", button, self.overElement.getPosition();
             self.overElement.onMouseClick(button)
 
     def onMouseDoubleClick(self, button):
