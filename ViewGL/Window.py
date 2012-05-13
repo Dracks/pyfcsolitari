@@ -77,6 +77,7 @@ class Window:
     def mouse(self, button, state, x, y):
         #for i in self.listObjects:
         #    i.onMouseClick(button);
+        print "MouseClick", button, x, y;
         if self.firstLayer!=False:
             self.firstLayer.onMouseClick(button);
         glutPostRedisplay()
