@@ -6,9 +6,12 @@
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
 
-from view import *
-from Pantalles import Menu
-class Language(Menu):
+import ViewGL
+import Widgets
+import Pantalles
+
+
+class Language(Pantalles.Menu):
     def __init__(self, father, recursos, opcions):
        # self.father=father;
         self.opcions=opcions
@@ -16,25 +19,25 @@ class Language(Menu):
         font=recursos.getfont(1)
         font2=recursos.getfont(2)
         
-        pla=VArea(0)
-        pla.addElem(Centre(Imatge(font2.render('Choose Language',True, (100,100,100))), (300,35)))
-        botons=VArea(15)
-        pla.addElem(Centre(botons,(300,365)))
+        pla=Widgets.VerticalLayout(0)
+        pla.addElement(Widgets.Center(Widgets.Image(font2.render('Choose Language',True, (100,100,100))), (300,35)))
+        botons=Widgets.VerticalLayout(15)
+        pla.addElement(Widgets.Center(botons,(300,365)))
         imatge=recursos.getmenuIdioma()
-        contingut=Fons(Imatge(imatge),pla)
-        menu=Centre(contingut, opcions.getResolucio())
+        contingut=Widgets.Background(Widgets.Image(imatge),pla)
+        menu=Widgets.Center(contingut, opcions.getResolucio())
         
-        boto=Boto(imatge1, 'Catala', font)
+        boto=Widgets.Button(imatge1, 'Catala', font)
         boto.setOnClick(self.seleccionarIdioma, 'catala')
-        botons.addElem(boto)
+        botons.addElement(boto)
         
-        boto=Boto(imatge1, 'Castellano', font)
+        boto=Widgets.Button(imatge1, 'Castellano', font)
         boto.setOnClick(self.seleccionarIdioma, 'castellano')
-        botons.addElem(boto)
+        botons.addElement(boto)
         
         #menu.update();
         
-        Menu.__init__(self, father, menu)
+        Pantalles.Menu.__init__(self, father, menu)
     
     def seleccionarIdioma(self,idioma):
         self.opcions.setLanguage(idioma)

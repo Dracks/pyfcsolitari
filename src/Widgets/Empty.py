@@ -16,6 +16,14 @@ class Empty:
         return (self.px, self.py, self.pz)
 
     def setPosition(self, x, y, z):
+        """
+        @param x
+        @type float
+        @param y
+        @type float
+        @param z
+        @type float
+        """
         self.px=x
         self.py=y
         self.pz=z
@@ -42,6 +50,9 @@ class Empty:
         pass
 
     def checkMouseOver(self, x, y):
+        """
+
+        """
         #p=self.getPosition()
         s=self.getSize();
         sx=x-self.px

@@ -6,10 +6,10 @@
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
 
-from view import *
-from Pantalles import Menu
+import ViewGL
+import Pantalles
 
-class GuardarCarregar(Menu):
+class GuardarCarregar(Pantalles.Menu):
 	def __init__(self, father, recursos, opcions, actions, textos, dades):
 		imatge1=recursos.getimgBoto()
 		font=recursos.getfont(1)
@@ -42,7 +42,7 @@ class GuardarCarregar(Menu):
 		content.addElem(Centre(cancel, (500,20)))
 		#self.menuGuardarCarregar=(Centre(Fons(Imatge(recursos.getmenuGuardariCarregar()),pla), opcions.resolucio), (boto_partida1,boto_partida2,boto_partida3, boto_partida4), titol, cancel)
 	
-		Menu.__init__(self, father, Centre(Fons(Imatge(recursos.getmenuGuardariCarregar()),pla), opcions.getResolucio()))
+		Pantalles.Menu.__init__(self, father, Centre(Fons(Imatge(recursos.getmenuGuardariCarregar()),pla), opcions.getResolucio()))
 	
 	def accioBoto(self, params):
 		if self.actions[params]!=None:

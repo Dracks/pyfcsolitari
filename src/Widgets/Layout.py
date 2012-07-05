@@ -1,5 +1,3 @@
-__author__ = 'dracks'
-
 from Widgets import Empty
 
 class Layout(Empty):
@@ -22,6 +20,7 @@ class Layout(Empty):
         return self.contentList
 
     def onMouseMove(self, x, y):
+        print "onMouseMove- Layout ", x , y;
         newOver=False;
         if (self.overElement!=False):
             self.overElement.onMouseMove(x,y)
@@ -37,6 +36,7 @@ class Layout(Empty):
 
         else:
             if self.checkMouseOver(x,y):
+                print "CheckMouseOver - OK"
                 for i,e in enumerate(self.contentList):
                     if (e.checkMouseOver(x,y)):
                         self.nearElements=(i-1, i+1);
@@ -44,9 +44,10 @@ class Layout(Empty):
                         break;
 
         self.overElement=newOver
-        #print newOver;
+        print newOver;
 
     def onMouseClick(self, button):
+        print "onMouseClick- Layout ", self.overElement
         if self.overElement:
             print "MouseClick - Layout", button, self.overElement.getPosition();
             self.overElement.onMouseClick(button)
@@ -119,5 +120,5 @@ class HorizontalLayout(Layout):
             nextCoordinate+=size[0]+self.margin
             if maxSize<size[1]:
                 maxSize=size[1]
-        self.size=(maxSize,nextCoordinate)
+        self.size=(nextCoordinate,maxSize)
 

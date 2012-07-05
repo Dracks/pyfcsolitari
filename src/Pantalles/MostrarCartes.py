@@ -5,10 +5,10 @@
 #  Created by Dracks on 24/07/09.
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
-from view import *
-from Pantalles import Menu
+import ViewGL
+import Pantalles
 
-class MostrarCartes(Menu):
+class MostrarCartes(Pantalles.Menu):
 	def __init__(self, father, recursos, opcions, dump_taulell):
 		self.mostrarMovimentsPossibles=False
 		imatgeMarca=Imatge(recursos.getImatgeMarca(),True,(3,3))

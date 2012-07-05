@@ -6,10 +6,10 @@
 #  Created by Dracks on 13/07/09.
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
-from view import *
-from Pantalles import Menu
+import ViewGL
+import Pantalles
 
-class InterficiePartida(Menu):
+class InterficiePartida(Pantalles.Menu):
 	def __init__(self, father, recursos, opcions, interficie, mouse, moviments):
 		self.moviments=list()
 		Visible=VArea(2)
@@ -43,7 +43,7 @@ class InterficiePartida(Menu):
 		self.zonaJoc=interficie;
 		#self.interficie.setOnMouseMove(self.tractaScroll)
 		
-		Menu.__init__(self, father, Visible)
+		Pantalles.Menu.__init__(self, father, Visible)
 		
 	def getScroll(self):
 		return self.scroll

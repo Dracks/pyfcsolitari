@@ -5,10 +5,10 @@
 #  Created by dracks on 11/07/09.
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
-from view import *
-from Pantalles import Menu
+import ViewGL
+import Pantalles
 
-class Guanyar(Menu):
+class Guanyar(Pantalles.Menu):
     def __init__(self, father, recursos, opcions):
         imatge1=recursos.getimgBoto()
         font=recursos.getfont(1)
@@ -27,7 +27,7 @@ class Guanyar(Menu):
         menu=Centre(Fons(Imatge(self.recursos.getPartidaFinalitzada()),pla), self.opcions.resolucio)
         self.text=text
         
-        Menu.__init__(self, father, menu)
+        Pantalles.Menu.__init__(self, father, menu)
         
     def getText(self):
         return self.text

@@ -5,10 +5,10 @@
 #  Created by dracks on 11/07/09.
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
-from view import *
-from Pantalles import Menu
+import ViewGL
+import Pantalles
 
-class CancelarPartida(Menu):
+class CancelarPartida(Pantalles.Menu):
     def __init__(self, father, recursos, opcions):
         imatge1=recursos.getimgBoto()
         font=recursos.getfont(1)

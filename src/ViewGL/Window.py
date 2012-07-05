@@ -4,23 +4,27 @@ __author__ = 'dracks'
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
-from time import time;
+from time import time
+
+import ViewGL
+import Widgets
 
 class Window:
     def __init__(self, width, height, name):
-        self.listObjects=[];
-        self.worldx=0.0;
-        self.worldy=0.0;
-        self.width=width;
-        self.height=height;
-        self.delegate=None;
-        self.count=0;
-        self.lastStep=time();
-        self.lastPosition=False;
+        self.listObjects=[]
+        self.worldx=0.0
+        self.worldy=0.0
+        self.width=width
+        self.height=height
+        self.delegate=None
+        self.count=0
+        self.lastStep=time()
+        self.lastPosition=False
 
         self.firstLayer=False
         self.FPSFunction=None
         self.FPSImage=None
+        self.darknessEnabled=False
 
         glutInit(sys.argv)
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH)
@@ -38,101 +42,119 @@ class Window:
 
         glutDisplayFunc(self.draw)
 
-        glutIdleFunc (self.idleFunction);
+        glutIdleFunc (self.idleFunction)
 
-        glutPassiveMotionFunc(self.mouseMove);
+        glutPassiveMotionFunc(self.mouseMove)
+
+
 
         #glutCheckLoop()
+    def enableDarkness(self):
+        self.darknessEnabled=True
+
+    def disableDarkness(self):
+        self.darknessEnabled=False
 
     def pushView(self, view):
         self.listObjects.append(view)
         self.firstLayer=view
 
     def popView(self):
-        self.listObjects.pop();
+        self.listObjects.pop()
         if len(self.listObjects):
             self.firstLayer=self.listObjects[-1]
         else:
-            self.firstLayer=False;
+            self.firstLayer=False
 
     #def addObject(self, obj):
     #    self.listObjects.append(obj)
 
     def setDelegate(self, delegate):
-        self.delegate=delegate;
+        self.delegate=delegate
 
     def setFPSFunction(self, fun):
-        self.FPSFunction=fun;
+        self.FPSFunction=fun
 
     def keyboard(self, *event):
-        glutPostRedisplay();
+        glutPostRedisplay()
 
     def mouseMove(self, x, y):
         #for i in self.listObjects:
         #    i.onMouseMove(x,y);
-        self.firstLayer.onMouseMove(x,y);
-        self.lastPosition=(x,y);
+        self.firstLayer.onMouseMove(x,y)
+        self.lastPosition=(x,y)
         glutPostRedisplay()
 
     def mouse(self, button, state, x, y):
         #for i in self.listObjects:
         #    i.onMouseClick(button);
-        print "MouseClick", button, x, y;
+        print "MouseClick", button, x, y, state
         if self.firstLayer!=False:
-            self.firstLayer.onMouseClick(button);
+            if state==0:
+                self.firstLayer.onMouseClick(button)
         glutPostRedisplay()
 
     def reshape(self, width, height):
-        self.width=width;
-        self.height=height;
+        self.width=width
+        self.height=height
         glutPostRedisplay()
 
     def idleFunction(self):
-        tmpTime=time();
+        tmpTime=time()
         self.count+=1
         if (tmpTime-self.lastStep>1.0):
             #print self.count
             if self.FPSFunction!=None:
                 self.FPSImage=self.FPSFunction(self.count)
             else:
-                self.FPSImage=None;
-            self.lastStep=tmpTime;
-            self.count=0;
-        glutPostRedisplay();
+                self.FPSImage=None
+            self.lastStep=tmpTime
+            self.count=0
+        glutPostRedisplay()
 
     def run(self):
         glutMainLoop()
         return
 
-    def draw(self):
-        glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
+    def close(self):
+        sys.exit()
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    def draw(self):
+        glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT)
+
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
         glViewport(0, 0, self.width, self.height)
         #gluOrtho2D(0.0, self.width, self.height, 0.0)
-        glOrtho (0.0, self.width, self.height, 0.0, -100.0, 100.0);
+        glOrtho (0.0, self.width, self.height, 0.0, -100.0, 100.0)
         #gluPerspective(45, float(self.width)/self.height, 0.1, 100.0)
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+        glMatrixMode(GL_MODELVIEW)
+        glLoadIdentity()
 
         # Enable z-buffer
         glEnable(GL_BLEND)
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_ALPHA_TEST);
+        glEnable(GL_DEPTH_TEST)
+        glEnable(GL_ALPHA_TEST)
 
-        glDepthMask(GL_TRUE);
-        glDepthFunc(GL_LESS);
+        glDepthMask(GL_TRUE)
+        glDepthFunc(GL_LESS)
 
-        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-        glAlphaFunc(GL_GREATER, 0.1);
+        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+        glAlphaFunc(GL_GREATER, 0.1)
 
 
-        glTranslatef(self.worldx, self.worldy, 0.0);
+        glTranslatef(self.worldx, self.worldy, 0.0)
         if self.FPSImage!=None:
-            self.FPSImage.draw(0,0,80);
+            self.FPSImage.draw(0,0,80)
         glScale(1.0, 1.0, len(self.listObjects)*0.001)
-        for i in self.listObjects:
-            glTranslatef(0.0, 0.0, 100);
-            i.draw();
-        glutSwapBuffers();
+        for i in self.listObjects[:-1]:
+            glTranslatef(0.0, 0.0, 100)
+            i.draw()
+        glTranslatef(0.0, 0.0, 100)
+        if (self.darknessEnabled):
+            darkness=ViewGL.Drawable(self.width, self.height)
+            darkness.setColor(0,0,0,0.4)
+            Widgets.Image(darkness).draw()
+        glTranslatef(0.0, 0.0, 1)
+        self.listObjects[-1].draw()
+        glutSwapBuffers()

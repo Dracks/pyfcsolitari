@@ -1,8 +1,13 @@
+__author__ ="Jaume Singla Valls"
 import Widgets
 
 class Fill(Widgets.Empty):
     def __init__(self, size, parent):
+        """
+        @type parent: Widgets.Empty
+        """
         Widgets.Empty.__init__(self)
+        #parent.
         self.sizeToFill=size
         assert (hasattr(parent, 'getChilds'))
         self.parent=parent
