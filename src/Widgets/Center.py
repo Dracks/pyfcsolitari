@@ -26,7 +26,7 @@ class Center(Empty):
     def onMouseMove(self, x, y):
         self.contents.onMouseMove(x, y)
         self.mouseOverBool=self.contents.checkMouseOver(x, y)
-        print "MouseMove- Center", self.mouseOverBool
+        #print "MouseMove- Center", self.mouseOverBool
 
 
     def onMouseClick(self, button):
@@ -52,7 +52,7 @@ class Center(Empty):
         if (self.surface[1]<size[1]):
             self.size=(self.size[0], size[1])
 
-        print "Debug Center ", size, self.surface;
+        #print "Debug Center ", size, self.surface;
         self.offset=((self.surface[0]-size[0])/2, (self.surface[1]-size[1])/2)
         self.contents.setPosition(self.px+self.offset[0], self.py+self.offset[1], self.zNear())
 

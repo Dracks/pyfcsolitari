@@ -24,7 +24,7 @@ class Background(Empty):
         self.foreground.onMouseMove(x,y)
 
     def onMouseClick(self, button):
-        print "MouseClick Background -"
+        #print "MouseClick Background -"
 
         self.foreground.onMouseClick(button)
 
@@ -39,7 +39,7 @@ class Background(Empty):
     def __update(self):
         bgsize=self.background.getSize()
         fgsize=self.foreground.getSize()
-        print "Background Size:", bgsize, fgsize
+        #print "Background Size:", bgsize, fgsize
         if bgsize[0]<fgsize[0]:
             bgsize=(fgsize[0], bgsize[1])
         if bgsize[1]<fgsize[1]:

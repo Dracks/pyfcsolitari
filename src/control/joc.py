@@ -108,7 +108,7 @@ class joc:
         self.interficie.run()
 
     def aMenuPrincipal(self):
-        self.interficie.setPrimerPla(self.menuPrincipal.get())
+        self.interficie.popView()
 
     def aPrincipaldesdeActualitzacio(self):
         self.interficie.ocultaFosc()
@@ -190,7 +190,7 @@ class joc:
                 dades.append(partida)
         #self.menuGuardarCarregar[3].setOnClick(self.aMenuPrincipal, None)
 
-        self.interficie.setPrimerPla(GuardarCarregar(self, self.recursos, self.opcions, actions, textos, dades).get())
+        self.interficie.pushView(Pantalles.GuardarCarregar(self, self.recursos, self.opcions, actions, textos, dades).get())
 
     def aMenuGuardar(self):
         textos=list()
@@ -352,10 +352,10 @@ class joc:
         self.joc=clase()
         self.joc.reparteixCartes()
         self.taulell=self.joc.getTaulell()
-        Interficie=globals()[self.joc.getInterficie()];
+        Interficie=globals()['Pantalles'].get(self.joc.getInterficie());
         self.interficiePartida=Interficie(self, self.recursos, self.opcions, self.taulell.dump())
         self.zonaJoc=InterficiePartida(self, self.recursos, self.opcions, self.interficiePartida, self.mouse, self.joc.getNumMoviments())
-        self.interficie.setPrimerPla(self.zonaJoc.get())
+        self.interficie.pushView(self.zonaJoc.get())
 
     """def mostraPartida(self):
         contents=self.opcionsMenu()

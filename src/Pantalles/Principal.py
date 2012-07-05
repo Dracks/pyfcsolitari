@@ -55,11 +55,11 @@ class Principal(Pantalles.Menu):
         
     def actionGameSixMounts(self, button):
         print "Sis Munts"
-        self.father.createGame("sismunts");
+        self.father.createGame("Sismunts");
 
     def actionGameAcordeo(self, button):
         print "Acordeo"
-        self.father.createGame("acordeo");
+        self.father.createGame("Acordeo");
 
     def actionLoad(self, button):
         print "Load"

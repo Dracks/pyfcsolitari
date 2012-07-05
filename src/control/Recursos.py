@@ -95,7 +95,7 @@ class Recursos:
     def getPartidaGuardarCarregar(self):
         if not self.partidaGuardarCarregar:
             self.partidaGuardarCarregar=ViewGL.Drawable(500,30)
-            self.partidaGuardarCarregar.fill(0.3, 0.7, 0.05)
+            self.partidaGuardarCarregar.setColor(0.3, 0.7, 0.05)
         return self.partidaGuardarCarregar
 
     def getmenuGuardariCarregar(self):

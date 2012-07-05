@@ -8,3 +8,6 @@ from GuardarCarregar import GuardarCarregar
 from Guanyar import Guanyar
 from InterficiePartida import InterficiePartida
 from MostrarCartes import MostrarCartes
+
+def get(d):
+    return globals()[d]

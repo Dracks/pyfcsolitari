@@ -9,11 +9,13 @@ class Button(Widgets.Empty):
         self.bgImage=image
         self.texImage=font.render(text)
         self.onClickFunction=None
+        self.onClickData=None
         self.offset=(0,0)
         self._update()
 
-    def setOnMouseClick(self, f):
+    def setOnMouseClick(self, f, d=None):
         self.onClickFunction=f;
+        self.onClickData=d
 
     def update(self):
         self._update();
@@ -36,7 +38,10 @@ class Button(Widgets.Empty):
     def onMouseClick(self, button):
         #print "Hola"
         if self.mouseOver and self.onClickFunction!=None:
-            self.onClickFunction(button);
+            if self.onClickData!=None:
+                self.onClickFunction(button, self.onClickData)
+            else:
+                self.onClickFunction(button);
 
     def draw(self):
         self.bgImage.draw(self.px, self.py, self.pz)

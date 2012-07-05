@@ -20,7 +20,7 @@ class Layout(Empty):
         return self.contentList
 
     def onMouseMove(self, x, y):
-        print "onMouseMove- Layout ", x , y;
+        #print "onMouseMove- Layout ", x , y;
         newOver=False;
         if (self.overElement!=False):
             self.overElement.onMouseMove(x,y)
@@ -36,7 +36,7 @@ class Layout(Empty):
 
         else:
             if self.checkMouseOver(x,y):
-                print "CheckMouseOver - OK"
+               # print "CheckMouseOver - OK"
                 for i,e in enumerate(self.contentList):
                     if (e.checkMouseOver(x,y)):
                         self.nearElements=(i-1, i+1);
@@ -44,12 +44,12 @@ class Layout(Empty):
                         break;
 
         self.overElement=newOver
-        print newOver;
+        #print newOver;
 
     def onMouseClick(self, button):
-        print "onMouseClick- Layout ", self.overElement
+        #print "onMouseClick- Layout ", self.overElement
         if self.overElement:
-            print "MouseClick - Layout", button, self.overElement.getPosition();
+            #print "MouseClick - Layout", button, self.overElement.getPosition();
             self.overElement.onMouseClick(button)
 
     def onMouseDoubleClick(self, button):
@@ -57,7 +57,7 @@ class Layout(Empty):
             self.overElement.onMouseDoubleClick(button)
 
     def update(self):
-        print "Layout Update"
+        #print "Layout Update"
         Layout._update(self);
         self._update();
 
@@ -85,7 +85,7 @@ class VerticalLayout(Layout):
 
     def _update(self):
         #Layout.__update(self);
-        print "Debug VLayout", self.size;
+        #print "Debug VLayout", self.size;
 
         nextCoordinate=self.margin
         maxSize=0
@@ -99,7 +99,7 @@ class VerticalLayout(Layout):
             if maxSize<size[0]:
                 maxSize=size[0]
         self.size=(maxSize,nextCoordinate)
-        print "Debug VLayout", self.size;
+        #print "Debug VLayout", self.size;
 
 class HorizontalLayout(Layout):
     """
@@ -108,7 +108,7 @@ class HorizontalLayout(Layout):
 
     def _update(self):
         #Layout.__update(self);
-        print "Debug HLayout", self.size;
+        #print "Debug HLayout", self.size;
         nextCoordinate=self.margin
         maxSize=0
         z=self.zNear();

@@ -7,6 +7,7 @@
 #
 import ViewGL
 import Pantalles
+import Widgets
 
 class MostrarCartes(Pantalles.Menu):
 	def __init__(self, father, recursos, opcions, dump_taulell):
@@ -15,14 +16,14 @@ class MostrarCartes(Pantalles.Menu):
 		piles=list()
 		espaiat=opcions.getEspaiat()
 		for i in range(len(dump_taulell[0])):
-			pila=Pila(Fons(imatgeMarca,Imatge(recursos.getCartaNull()), False), (-2,1), opcions.getMaxDesplacamentPiles(), velositatDesplacament=opcions.getVelositatDesplacament())
+			pila=Widgets.Stack(Widgets.Background(imatgeMarca,Widgets.Imatge(recursos.getCartaNull()), False), (-2,1), opcions.getMaxDesplacamentPiles(), velositatDesplacament=opcions.getVelositatDesplacament())
 			pila.setOnClick(self.clickPila,i)
 			pila.setOnDobleClick((self.dobleclickColumna,i))
 			for e in dump_taulell[0][i]:
 				if e["visible"]:
-					pila.addElem(Fons(imatgeMarca,Imatge(recursos.getCarta(e["pal"],e["numero"])),False),espaiat[0],True)
+					pila.addElem(Widgets.Background(imatgeMarca,Widgets.Imatge(recursos.getCarta(e["pal"],e["numero"])),False),espaiat[0],True)
 				else:
-					pila.addElem(Fons(imatgeMarca,Imatge(recursos.getCartaOculta()),False),espaiat[1],False)
+					pila.addElem(Widgets.Background(imatgeMarca,Widgets.Imatge(recursos.getCartaOculta()),False),espaiat[1],False)
 			piles.append(pila)  
 		muntets=list()
 		for i in range(len(dump_taulell[1])):
