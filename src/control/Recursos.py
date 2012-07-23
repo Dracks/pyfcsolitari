@@ -139,7 +139,8 @@ class Recursos:
         for j in range(0,12):
             #carta=ViewGL.Drawable((self.config["carta"]["width"],self.config["carta"]["height"]), HWSURFACE|SRCALPHA)
             #carta.blit(image,(0,0),pygame.Rect( j*self.config["carta"]["width"], 0, self.config["carta"]["width"], self.config["carta"]["height"] ))
-            carta=ViewGL.Image(image.crop(j*self.config["carta"]["width"], 0, self.config["carta"]["width"], self.config["carta"]["height"]))
+            box=(j*self.config["carta"]["width"], 0, self.config["carta"]["width"], self.config["carta"]["height"])
+            carta=ViewGL.Image(image.crop(box))
             #if incrusta:
             #    carta.blit(self.fonts[1].render("%d" % (j+1),True,(0,0,0),posicio_numero))
             # carta.convert_alpha()

@@ -4,6 +4,7 @@ import Widgets
 class Fill(Widgets.Empty):
     def __init__(self, size, parent):
         """
+        @type size: number
         @type parent: Widgets.Empty
         """
         Widgets.Empty.__init__(self)

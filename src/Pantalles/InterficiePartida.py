@@ -8,36 +8,37 @@
 #
 import ViewGL
 import Pantalles
+import Widgets
 
 class InterficiePartida(Pantalles.Menu):
 	def __init__(self, father, recursos, opcions, interficie, mouse, moviments):
 		self.moviments=list()
-		Visible=VArea(2)
-		self.mouse=mouse;
+		Visible=Widgets.VerticalLayout(2)
+		self.mouse=mouse
 		
-		boto=Boto(recursos.getimgBoto(), opcions.getText('game','menu'), recursos.getfont(1))
-		boto.setOnClick(self.aMenuJoc,1)
-		barra=HArea(10)
-		barra.addElem(Ghost())
-		barra.addElem(boto);
-		boto=Boto(recursos.getimgBoto(), opcions.getText('game','undo'), recursos.getfont(1))
-		boto.setOnClick(self.undo,1)
-		barra.addElem(boto)
-		boto=Boto(recursos.getimgBoto(), opcions.getText('game','save'), recursos.getfont(1))
-		boto.setOnClick(self.aMenuGuardar,None)
-		barra.addElem(boto)
-		boto=Boto(recursos.getimgBoto(), opcions.getText('game','viewmovements'), recursos.getfont(1))
-		boto.setOnClick(self.activaMoviments,None)
+		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','menu'), recursos.getfont(1))
+		boto.setOnMouseClick(self.aMenuJoc,1)
+		barra=Widgets.HorizontalLayout(10)
+		barra.addElement(Widgets.Empty())
+		barra.addElement(boto);
+		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','undo'), recursos.getfont(1))
+		boto.setOnMouseClick(self.undo,1)
+		barra.addElement(boto)
+		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','save'), recursos.getfont(1))
+		boto.setOnMouseClick(self.aMenuGuardar,None)
+		barra.addElement(boto)
+		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','viewmovements'), recursos.getfont(1))
+		boto.setOnMouseClick(self.activaMoviments,None)
 		self.botoVisualitzarMoviments=boto
-		barra.addElem(boto)
-		barra.addElem(Reomple(barra,(opcions.getResolucio()[0],1)))
-		self.vistaMoviments=Imatge(recursos.getfont(1).render(opcions.getText('game','movements')+": %d" % moviments,True,(255,255,255)))
-		barra.addElem(self.vistaMoviments)
-		barra.addElem(Ghost())
-		Visible.addElem(barra)
-		self.scroll=Scroll((opcions.getResolucio()[0], opcions.getResolucio()[1]-30))
-		self.scroll.assign(interficie.get())
-		Visible.addElem(self.scroll)
+		barra.addElement(boto)
+		barra.addElement(Widgets.HorizontalFill(opcions.getResolucio()[0],barra))
+		self.vistaMoviments=Widgets.Image(recursos.getfont(1).render(opcions.getText('game','movements')+": %d" % moviments,(255,255,255)))
+		barra.addElement(self.vistaMoviments)
+		barra.addElement(Widgets.Empty())
+		Visible.addElement(barra)
+		self.scroll=Widgets.Scroll((opcions.getResolucio()[0], opcions.getResolucio()[1]-30))
+		self.scroll.setElement(interficie.get())
+		Visible.addElement(self.scroll)
 		#self.interficie.setPrimerPla(Visible)
 		#Visible.update()
 		self.zonaJoc=interficie;
@@ -49,7 +50,7 @@ class InterficiePartida(Pantalles.Menu):
 		return self.scroll
 	
 	def setMoviments(self, moviments):
-		self.vistaMoviments.set(Imatge(recursos.getfont(1).render(opcions.getText('game','movements')+": %d" % moviments,True,(255,255,255))))
+		self.vistaMoviments.set(Imatge(recursos.getfont(1).render(opcions.getText('game','movements')+": %d" % moviments,(255,255,255))))
 		
 	def tractaScroll(self, (x,y)):
 		despx=despy=0;

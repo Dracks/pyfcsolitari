@@ -10,9 +10,15 @@ class Empty:
         self.parent=False
 
     def update(self):
+        """
+        force to recalculate the widget contents, and if he has some child, pass the update to their childs.
+        """
         pass;
 
     def getPosition(self):
+        """
+        @rtype: (float, float, float)
+        """
         return (self.px, self.py, self.pz)
 
     def setPosition(self, x, y, z):

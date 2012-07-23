@@ -11,6 +11,8 @@ class Scroll(Empty):
         Empty.setPosition(self, x,y,z)
         self._update()
         #self.contents.setPosition(x-self.offset[0], y-self.offset[1], self.zFar(40))
+    def setElement(self, elem):
+        self.contents=elem;
 
     def update(self):
         self.contents.update()

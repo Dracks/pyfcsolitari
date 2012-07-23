@@ -354,7 +354,7 @@ class joc:
         self.taulell=self.joc.getTaulell()
         Interficie=globals()['Pantalles'].get(self.joc.getInterficie());
         self.interficiePartida=Interficie(self, self.recursos, self.opcions, self.taulell.dump())
-        self.zonaJoc=InterficiePartida(self, self.recursos, self.opcions, self.interficiePartida, self.mouse, self.joc.getNumMoviments())
+        self.zonaJoc=Pantalles.InterficiePartida(self, self.recursos, self.opcions, self.interficiePartida, None, self.joc.getNumMoviments())
         self.interficie.pushView(self.zonaJoc.get())
 
     """def mostraPartida(self):
