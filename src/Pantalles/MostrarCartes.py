@@ -107,20 +107,20 @@ class MostrarCartes(Pantalles.Menu):
     
         
     def desactivaDesplacar(self):
-        for p in self.accesdirecte[0]:
+        """for p in self.accesdirecte[0]:
             p.desactivaDesplacar()
         for p in self.accesdirecte[1]:
             p.desactivaDesplacar()
         if self.accesdirecte[2]!=False:
-            self.accesdirecte[2][1].desactivaDesplacar()
+            self.accesdirecte[2][1].desactivaDesplacar()"""
             
     def activaDesplacar(self):
-        for p in self.accesdirecte[0]:
+        """for p in self.accesdirecte[0]:
             p.activaDesplacar()
         for p in self.accesdirecte[1]:
             p.activaDesplacar()
         if self.accesdirecte[2]!=False:
-            self.accesdirecte[2][1].activaDesplacar()
+            self.accesdirecte[2][1].activaDesplacar()"""
     
     def getEstatMarcaMoviments(self):
         return self.estatMarcaMoviments

@@ -7,6 +7,7 @@
 #
 import ViewGL
 import Pantalles
+import Widgets
 
 class CancelarPartida(Pantalles.Menu):
     def __init__(self, father, recursos, opcions):
@@ -14,25 +15,25 @@ class CancelarPartida(Pantalles.Menu):
         font=recursos.getfont(1)
         font2=recursos.getfont(2)
         
-        pla=VArea(0)
-        pla.addElem(Centre(Imatge(font2.render(opcions.getText('cancel','title'), True, (100,100,100))), (500,35)))
-        content=VArea(15)
-        pla.addElem(Centre(content,(500,145)))
-        botons=HArea(20)
-        content.addElem(Centre(Imatge(font.render(opcions.getText('cancel','text'), True, (255,255,255))),(500,20)))
-        content.addElem(Centre(botons,(500,40)))
-        boto=Boto(imatge1, opcions.getText('Generic','yes'), font)
-        boto.setOnClick(self.actionButtonYes,False)
-        botons.addElem(boto)
-        boto=Boto(imatge1, opcions.getText('Generic','no'), font)
-        boto.setOnClick(self.actionButtonNo,False)
-        botons.addElem(boto)
+        pla=Widgets.VerticalLayout(0)
+        pla.addElement(Widgets.Center((500,35),Widgets.Image(font2.render(opcions.getText('cancel','title'), (100,100,100)))))
+        content=Widgets.VerticalLayout(15)
+        pla.addElement(Widgets.Center((500,145),content))
+        botons=Widgets.HorizontalLayout(20)
+        content.addElement(Widgets.Center((500,20), Widgets.Image(font.render(opcions.getText('cancel','text'), (255,255,255)))))
+        content.addElement(Widgets.Center((500,40),botons))
+        boto=Widgets.Button(imatge1, opcions.getText('Generic','yes'), font)
+        boto.setOnMouseClick(self.actionButtonYes)
+        botons.addElement(boto)
+        boto=Widgets.Button(imatge1, opcions.getText('Generic','no'), font)
+        boto.setOnMouseClick(self.actionButtonNo)
+        botons.addElement(boto)
         imatge=recursos.getmenuSortir()
-        contingut=Fons(Imatge(imatge),pla)
-        menu=Centre(contingut,opcions.getResolucio())
+        contingut=Widgets.Background(Widgets.Image(imatge),pla)
+        menu=Widgets.Center(opcions.getResolucio(),contingut)
         menu.update()
         
-        Menu.__init__(self, father, menu)
+        Pantalles.Menu.__init__(self, father, menu)
         
     def actionButtonYes(self,params):
         self.father.deJocaMenu();

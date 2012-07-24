@@ -115,22 +115,27 @@ class joc:
         self.interficie.setPrimerPla(self.interficie.popBackground())
 
     def aMenuJoc(self):
-        self.interficie.mostraFosc()
-        self.interficie.pushBackground(self.interficie.getPrimerPla())
-        self.interficie.setPrimerPla(CancelarPartida(self, self.recursos, self.opcions).get())
+        self.interficie.enableDarkness()
+        #self.interficie.pushBackground(self.interficie.getPrimerPla())
+        #self.interficie.setPrimerPla(CancelarPartida(self, self.recursos, self.opcions).get())
+        self.interficie.pushView(Pantalles.CancelarPartida(self, self.recursos, self.opcions).get())
         self.interficiePartida.desactivaDesplacar()
 
     def aJocdesdeMenu(self):
-        self.interficie.ocultaFosc()
-        self.interficie.setPrimerPla(self.interficie.popBackground())
+        self.interficie.disableDarkness()
+        self.interficie.popView()
         self.interficiePartida.activaDesplacar()
 
     def deJocaMenu(self):
-        self.interficie.popBackground()
-        self.interficie.ocultaFosc()
-        self.interficie.setPrimerPla(self.menuPrincipal.get())
-        self.interficie.setOnMouseMove(False)
-        self.interficie.setForFrame(False)
+        self.interficie.disableDarkness()
+        self.interficie.popView()
+        self.interficie.popView()
+
+        #self.interficie.popBackground()
+        #self.interficie.ocultaFosc()
+        #self.interficie.setPrimerPla(self.menuPrincipal.get())
+        #self.interficie.setOnMouseMove(False)
+        #self.interficie.setForFrame(False)
         #self.activaDesplacar()
 
     def menuPartidaFinalitzada(self):

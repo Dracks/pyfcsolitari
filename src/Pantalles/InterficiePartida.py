@@ -17,12 +17,12 @@ class InterficiePartida(Pantalles.Menu):
 		self.mouse=mouse
 		
 		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','menu'), recursos.getfont(1))
-		boto.setOnMouseClick(self.aMenuJoc,1)
+		boto.setOnMouseClick(self.aMenuJoc)
 		barra=Widgets.HorizontalLayout(10)
 		barra.addElement(Widgets.Empty())
 		barra.addElement(boto);
 		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','undo'), recursos.getfont(1))
-		boto.setOnMouseClick(self.undo,1)
+		boto.setOnMouseClick(self.undo)
 		barra.addElement(boto)
 		boto=Widgets.Button(recursos.getimgBoto(), opcions.getText('game','save'), recursos.getfont(1))
 		boto.setOnMouseClick(self.aMenuGuardar,None)
@@ -90,7 +90,7 @@ class InterficiePartida(Pantalles.Menu):
 		self.scroll.desplaca((x,y))
 		
 	
-	def undo(self, params):
+	def undo(self, button):
 		self.father.undo()
 		
 	def aMenuJoc(self, params):
