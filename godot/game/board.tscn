@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.14902, 0.580392, 0.0117647, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+projection = 1
+size = 10.0
+
+[node name="background" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 2000, 0, 0, 0, 1, 0, 0, -2 )
+texture = SubResource( 2 )
